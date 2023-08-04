@@ -12,11 +12,13 @@ export default class user extends Model {
     },
     name: {
       type: DataTypes.STRING(256),
-      allowNull: false
+      allowNull: false,
+      unique: "unique_name"
     },
     email: {
       type: DataTypes.STRING(256),
-      allowNull: false
+      allowNull: false,
+      unique: "unique_emial"
     },
     created_at: {
       type: DataTypes.DATE,
@@ -44,6 +46,22 @@ export default class user extends Model {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "unique_name",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "name" },
+        ]
+      },
+      {
+        name: "unique_emial",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
         ]
       },
     ]

@@ -1,18 +1,17 @@
+import { getUsers } from "../../services/users.mjs";
+
 const resolvers = {
   Query: {
     hello: () => "world",
-    getUser: () => {
-      const users = [
-        {
-          userName: "John",
-          email: "john@doe.com",
-        },
-        {
-          userName: "Jane",
-          email: "jane@doe.com",
-        },
-      ];
-      return users;
+    getUser: async () => {
+      try {
+        const users = await getUsers();
+        if (users) return users;
+        return false;
+      } catch (error) {
+        console.log(error.message);
+        return false;
+      }
     },
   },
 };
