@@ -11,4 +11,20 @@ const getUsers = async () => {
   }
 };
 
-export { getUsers };
+const createUser = async (data) => {
+  try {
+    //TODO: Validate Input and encrypt password
+
+    const { id } = await db.user.create({
+      ...data,
+      name: data.userName,
+    });
+
+    return id ?? false;
+  } catch (error) {
+    console.log(error.name);
+    throw error;
+  }
+};
+
+export { getUsers, createUser };
