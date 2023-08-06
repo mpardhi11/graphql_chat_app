@@ -10,7 +10,10 @@ const server = new ApolloServer({
   // sequelizeInstance,
 });
 
-const { url } = await startStandaloneServer(server);
+const { url } = await startStandaloneServer(server, {
+  listen: { port: process.env.PORT },
+});
+
 console.log(`-------------------------------------------------------------`);
 console.log(`🚀 Server ready at ${url}`);
 console.log(`-------------------------------------------------------------`);

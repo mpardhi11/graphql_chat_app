@@ -19,7 +19,7 @@ const resolvers = {
     register: async (parent, { data }, context, info) => {
       try {
         const userRegistered = await createUser(data);
-        return userRegistered ? { userName: data.userName } : false;
+        return userRegistered ? { userName: data.userName, email: data.email } : false;
       } catch (error) {
         console.log(error.name);
         throw error;

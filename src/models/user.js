@@ -20,6 +20,12 @@ export default class user extends Model {
           type: DataTypes.STRING(256),
           allowNull: false,
           unique: "unique_emial",
+          validate: {
+            isEmail: {
+              args: true,
+              msg: "must be a valid email address",
+            },
+          },
         },
         password: {
           type: DataTypes.STRING(512),
